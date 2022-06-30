@@ -1,28 +1,38 @@
 const express = require("express");
 const app = express();
-const cheerio = require("cheerio");
-const axios = require("axios");
 // removed fs module since it was not used
 const scrape = require("./scrape");
 
-
+app.use(express.json());
+ 
 const port = 3000
 
 app.get('/', (req, res) => {
   res.send("this is a working server\n see <a href=/wiki>another route here </a>")
 });
 
-
 // NOTE: I've changed this endpoint to be /wiki
 app.get("/wiki", (req, res) => {
-  res.send('this is a new endpoint')
-  scrape
+  console.log(scrape)
+  res.send('this is a new endpoint');
 })
 
+
+
+app.post("/wiki/:country", (req, res) => {
+  const { country } = req.body; 
+
+  if(!country){
+    res.status(418).send({message: 'Check the country you listed!'})
+  }
+  res.send({
+     wiki: `You set this ${country}`
+  });
+
+});
+
 // general best practice is to keep app.listen at the bottom of your code so this runs as a task later in the event loop.
-app.listen(
-  port,
-  () => console.log(`This is listening on port: ${port}`))
+app.listen(port,() => console.log(`This is listening on port: ${port}`))
 
 
 //keep getting "AxiosError: Request failed with status code 404" can't figure out where I am not linked correctly 
