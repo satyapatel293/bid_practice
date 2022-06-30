@@ -27,14 +27,11 @@ async function scrapeData() {
       // Populate countries array with country data
       countries.push(country);
     });
-    // Logs countries array to the console
-    console.dir(countries);
+    // // Logs countries array to the console
+      console.log(countries);
     // Write countries array in countries.json file
     fs.writeFile("coutries.json", JSON.stringify(countries, null, 2), (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
+      
       console.log("Successfully written data to file");
     });
   } catch (err) {
