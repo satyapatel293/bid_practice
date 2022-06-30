@@ -26,17 +26,18 @@ async function scrapeData() {
       country.iso3 = $(el).children("span").text();
       // Populate countries array with country data
       countries.push(country);
+      countries;
     });
-    // Logs countries array to the console
-    console.dir(countries);
-    // Write countries array in countries.json file
-    fs.writeFile("coutries.json", JSON.stringify(countries, null, 2), (err) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      console.log("Successfully written data to file");
-    });
+    // // Logs countries array to the console
+    // console.dir(countries);
+    // // Write countries array in countries.json file
+    // fs.writeFile("coutries.json", JSON.stringify(countries, null, 2), (err) => {
+    //   if (err) {
+    //     console.error(err);
+    //     return;
+    //   }
+    //   console.log("Successfully written data to file");
+    // });
   } catch (err) {
     console.error(err);
   }
